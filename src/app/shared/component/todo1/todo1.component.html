@@ -1,0 +1,69 @@
+
+ <!-- <p class="bg-success text-center h5"> hello this is my first todo </p> -->
+
+   <div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6 mt-5">
+              <div class="card">
+                <div class="card-header bg-info">
+                   <h3 class="text-center">{{!isineditmode?"ADD TODO":"UPDATE TODO"}}</h3>
+                </div>
+                <div class="card-body">
+
+                    <div class="form-group mt-2">  
+                     <label for="todoitem">TODO ITEM</label>
+                     <input  type="text" #todoitem class="form-control">
+              </div>
+
+                <div class="form-group">  
+                     <label for="Iscomplete">Is completed</label>
+                     <select #Iscomplete class="form-control">
+                                <option value="yes">yes</option>
+                                <option value="no">no</option>
+                        </select>
+              </div>
+           </div>
+                 <div class="card-footer">
+                    <div class="form-group">
+                       <button *ngIf="!isineditmode" (click)="addtodo()" class="btn btn-info w-100">ADD TODO</button>
+                       <button *ngIf="isineditmode" (click)="updatetodo()" class="btn btn-info w-100">UPDATE TODO</button>
+                        </div>
+                 </div>
+                
+              </div>
+        </div>
+
+
+        <div class="col-md-6 mt-5">
+                  <div class="card">
+                      <div class="card-body" >
+                          <ul class="list-group"*ngIf="todoArr.length>0 ; else nodata" >
+                                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let todo of todoArr">
+
+                                    <div>
+                                      <input type="checkbox" class="mr-4" [checked]="todo.iscompleted">  
+                                    <strong>{{todo.todoitem}}</strong>
+                                    </div>
+
+                                    <div>
+                                     <button mat-mini-fab  class="mr-4 bg-info" aria-label="example icon button with a delete icon" (click)="edittodo(todo)"><mat-icon>edit</mat-icon></button>
+
+                                     <button mat-mini-fab  class="bg-danger" aria-label="example icon button with a delete icon" (click)="deletetodo(todo.todoid)"><mat-icon>delete</mat-icon></button>
+                                   </div>
+
+                                </li>     
+                          </ul>
+                            <ng-template #nodata>
+                              <h3 class="alert alert-info">no data yet !!!</h3>
+                       </ng-template>
+                      </div>
+                 
+                  </div>
+                     
+        </div>
+    </div>
+   </div>
+
+
+
+
