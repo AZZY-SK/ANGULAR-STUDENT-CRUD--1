@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { todoArr } from '../const/tododata';
-import { ItodoArr } from '../model/todo';
-import { UuidService } from '../services/uuid.service';
+import { todoArr } from '../../const/tododata';
+import { ItodoArr } from '../../model/todo';
+import { UuidService } from '../../services/uuid.service';
 // import { SnackarService } from '../services/snackar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

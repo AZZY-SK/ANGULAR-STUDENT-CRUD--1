@@ -1,0 +1,88 @@
+<h3 class="text-center">student task</h3>
+
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card border-dark">
+                <div class="card-header">
+                    <h4 class="text-center">{{!Isineditmode?'student details':'update details'}}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="fullname">fullname</label>
+                        <input type="text" #fullname class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">email</label>
+                        <input type="text" #email class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">course</label>
+                        <input type="text" #course class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="isActive">isActive</label>
+                        <select #isActive class="form-control">
+                            <option value="true">yes</option>
+                            <option value="false">no</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-sm w-100 btn-info" *ngIf="!Isineditmode" (click)="addstudent()">ADD</button>
+                    <button class="btn btn-sm w-100 btn-info" *ngIf="Isineditmode" (click)="onupdate()">UPDATE</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="card border-dark">
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="studentArr.length>0; else nodata">
+                        <thead>
+                            <tr>
+                                <th>sr no.</th>
+                                <th>fullname</th>
+                                <th>email</th>
+                                <th>course</th>
+                                <th>isActive</th>
+                                <th>edit</th>
+                                <th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="" *ngFor="let student of studentArr; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{student.fullname}}</td>
+                                <td>{{student.email}}</td>
+                                <td>{{student.course}}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <input type="checkbox" class="mr-2" [checked]="student.isActive"
+                                            (change)="oncheckbox(student)">
+                                        <span class="badge"
+                                            [ngClass]="student.isActive?'badge-success':'badge-danger'">{{student.isActive?
+                                            'ACTIVE' : 'INACTIVE' }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button mat-mini-fab class="bg-info"
+                                        (click)="onedit(student)"><mat-icon>edit</mat-icon></button>
+                                </td>
+                                <td>
+                                    <button mat-mini-fab class="bg-danger"
+                                        (click)="ondelete(student.studentID)"><mat-icon>delete</mat-icon></button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #nodata>
+    <p class="bg-danger text-center w-100"><strong>no data yet!!!</strong></p>
+</ng-template>
