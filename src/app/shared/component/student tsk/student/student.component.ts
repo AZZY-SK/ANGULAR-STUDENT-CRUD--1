@@ -43,6 +43,13 @@ export class StudentComponent implements OnInit {
        this.course.nativeElement.value=''
        this.isActive.nativeElement.value=''
 
+        this._MatSnackBar.open(`New Student Details Added Successfully`,`close`,{
+       horizontalPosition:'left',
+       verticalPosition:'top',
+       duration:3000
+  })
+      
+
  }
  
 onedit(student:IstudentArr){
